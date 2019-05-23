@@ -57,3 +57,13 @@ class Database:
         except Exception:
             self.db.rollback()
             return False
+
+    def login(self, name, passwd):
+        hash = hashlib.md5((name + "!@#$%!^!^)*(_(+").encode())
+        hash.update(passwd.encode())
+        sql = "select * from dict_user where name='%s' and passwd='%s'" % (name,hash.hexdigest())
+        self.cur.execute(sql)
+        r = self.cur.fetchone()  # 如果查询到结果
+        if r:
+            return True
+

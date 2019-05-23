@@ -25,7 +25,14 @@ def do_register(c,db,data):
         c.send(b"FAIL")
 
 def do_login(c,db,data):
-    pass
+    tmp = data.split(" ")
+    name = tmp[1]
+    passwd = tmp[2]
+
+    if db.login(name, passwd):
+        c.send(b'OK')
+    else:
+        c.send(b"FAIL")
 
 def do_request(c, db):
     db.create_cursor() # 生成游标 db.cur
