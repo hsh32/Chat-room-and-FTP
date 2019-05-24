@@ -8,23 +8,26 @@ from socket import *
 import signal
 import sys
 from operation_db import *
+from time import sleep
 
 # 全局变量
 HOST = '0.0.0.0'
 PORT = 8000
 ADDR = (HOST, PORT)
 
-def do_register(c,db,data):
+
+def do_register(c, db, data):
     tmp = data.split(" ")
     name = tmp[1]
     passwd = tmp[2]
 
-    if db.register(name,passwd):
+    if db.register(name, passwd):
         c.send(b'OK')
     else:
         c.send(b"FAIL")
 
-def do_login(c,db,data):
+
+def do_login(c, db, data):
     tmp = data.split(" ")
     name = tmp[1]
     passwd = tmp[2]
@@ -34,16 +37,56 @@ def do_login(c,db,data):
     else:
         c.send(b"FAIL")
 
+
+def do_query(c, db, data):
+    tmp = data.split(" ")
+    name = tmp[1]
+    word = tmp[2]
+    # 插入历史记录
+    db.insert_history(name, word)
+    # 查单词
+    mean = db.query(word)
+    if not mean:
+        c.send("没有该单词".encode())
+    else:
+        msg = "%s : %s" % (word, mean)
+        c.send(msg.encode())
+
+
+def do_history(c, db, data):
+    tmp = data.split(" ")
+    name = tmp[1]
+
+    # 查历史记录
+    r = db.history(name)
+    if not r:
+        c.send(b'Fail')
+        return
+    c.send(b'OK')
+    for i in r:
+        # i ==> (name,word,time)
+        msg = "%s   %s   %s" % i
+        sleep(0.1)
+        c.send(msg.encode())
+    sleep(0.1)
+    c.send(b'##')
+
 def do_request(c, db):
-    db.create_cursor() # 生成游标 db.cur
+    db.create_cursor()  # 生成游标 db.cur
     while True:
         data = c.recv(1024).decode()
-        print(c.getpeername(),":",data)
+        print(c.getpeername(), ":", data)
+        if data[0] == 'E' or data[0] == 'E':
+            c.close()
+            sys.exit("客户端退出")
         if data[0] == 'R':
-            do_register(c,db,data)
+            do_register(c, db, data)
         if data[0] == 'L':
-            do_login(c,db,data)
-
+            do_login(c, db, data)
+        if data[0] == 'Q':
+            do_query(c, db, data)
+        if data[0] == 'H':
+            do_history(c, db, data)
 
 
 def main():
@@ -67,6 +110,7 @@ def main():
             print("Connect from:", addr)
         except KeyboardInterrupt:
             s.close()
+            db.close()
             sys.exit("服务器退出")
         except Exception as e:
             print(e)

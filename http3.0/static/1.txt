@@ -1,0 +1,21 @@
+RP/0/RSP0/CPU0:2_c-leaf-1#  show interfaces
+Thu Sep  7 15:17:18.514 UTC
+
+BVI1 is down, line protocol is down
+  Interface state transitions: 0
+  Hardware is Bridge-Group Virtual Interface, address is 10f3.116c.e6a7
+  Internet address is 192.168.100.254/24
+  MTU 1514 bytes, BW 10000000 Kbit (Max: 10000000 Kbit)
+     reliability 255/255, txload 0/255, rxload 0/255
+  Encapsulation ARPA,  loopback not set,
+  ARP type ARPA, ARP timeout 04:00:00
+  Last input never, output never
+  Last clearing of "show interface" counters never
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 total input drops
+     0 drops for unrecognized upper-level protocol
+     Received 0 broadcast packets, 0 multicast packets
+     0 packets output, 0 bytes, 0 total output drops
+
+从前从前有只毛毛虫

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c881dc0-5f73-4c25-992f-e13f215bd661" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/dict_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/operation_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/operation_db.py" afterDir="false" />
-    </list>
+    <list default="true" id="1c881dc0-5f73-4c25-992f-e13f215bd661" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +110,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../http3.0" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -219,7 +216,7 @@
       <window_info id="DB Browser" order="0" weight="0.32964134" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="3" visible="true" weight="0.14260249" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" visible="true" weight="0.14260249" />
       <window_info anchor="bottom" id="DB Execution Console" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
@@ -227,7 +224,7 @@
       <window_info anchor="bottom" id="Event Log" sideWeight="0.50052744" side_tool="true" weight="0.16666667" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4994726" visible="true" weight="0.17922375" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994726" weight="0.17922375" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />

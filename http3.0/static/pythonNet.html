@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>pythonNet</title>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:/Users/lvze/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.3.13/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1>IO网络编程</h1>
+<table>
+<thead>
+<tr>
+<th>Tedu Python 教学部</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Author：吕泽</td>
+</tr>
+<tr>
+<td>Days：3天</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#io">IO</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%96%87%E4%BB%B6">文件</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E5%AD%97%E8%8A%82%E4%B8%B2bytes">字节串（bytes）</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99">文件读写</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%89%A9%E5%B1%95%E5%BB%B6%E4%BC%B8%E6%96%87%E4%BB%B6%E6%B5%81">@ 扩展延伸：文件流</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C">其他操作</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E5%88%B7%E6%96%B0%E7%BC%93%E5%86%B2%E5%8C%BA">刷新缓冲区</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%96%87%E4%BB%B6%E5%81%8F%E7%A7%BB%E9%87%8F">文件偏移量</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6">文件描述符</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%87%BD%E6%95%B0">文件管理函数</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80">网络编程基础</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B">OSI七层模型</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8Btcpip%E6%A8%A1%E5%9E%8B">四层模型（TCP/IP模型）</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B">数据传输过程</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE">网络协议</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">网络基础概念</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E4%BC%A0%E8%BE%93%E5%B1%82%E6%9C%8D%E5%8A%A1">传输层服务</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%BC%A0%E8%BE%93%E6%9C%8D%E5%8A%A1%E5%9F%BA%E4%BA%8Etcp%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93">面向连接的传输服务（基于TCP协议的数据传输）</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E9%9D%A2%E5%90%91%E6%97%A0%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%BC%A0%E8%BE%93%E6%9C%8D%E5%8A%A1%E5%9F%BA%E4%BA%8Eudp%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93">面向无连接的传输服务（基于UDP协议的数据传输）</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#socket%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B">socket套接字编程</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E5%A5%97%E6%8E%A5%E5%AD%97%E4%BB%8B%E7%BB%8D">套接字介绍</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#tcp%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B">tcp套接字编程</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B5%81%E7%A8%8B">服务端流程</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E7%A8%8B">客户端流程</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#tcp-%E5%A5%97%E6%8E%A5%E5%AD%97%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%89%B9%E7%82%B9">tcp 套接字数据传输特点</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E7%BD%91%E7%BB%9C%E6%94%B6%E5%8F%91%E7%BC%93%E5%86%B2%E5%8C%BA">网络收发缓冲区</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#tcp%E7%B2%98%E5%8C%85">tcp粘包</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#udp%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B">UDP套接字编程</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B5%81%E7%A8%8B-1">服务端流程</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E7%A8%8B-1">客户端流程</a></li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#socket%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%E5%92%8Csocket%E5%A5%97%E6%8E%A5%E5%AD%97%E5%B1%9E%E6%80%A7">socket模块方法和socket套接字属性</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#udp%E5%A5%97%E6%8E%A5%E5%AD%97%E5%B9%BF%E6%92%AD">UDP套接字广播</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#tcp%E5%A5%97%E6%8E%A5%E5%AD%97%E4%B9%8Bhttp%E4%BC%A0%E8%BE%93">TCP套接字之HTTP传输</a>
+<ul>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#http%E5%8D%8F%E8%AE%AE-%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE">HTTP协议 （超文本传输协议）</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#http%E8%AF%B7%E6%B1%82">HTTP请求</a></li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#http%E5%93%8D%E5%BA%94response">http响应（response）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://code.tarena.com.cn/AIDCode/aid1903/02-PythonNet/Net/pythonNet.html#struct%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8">struct模块的使用</a></li>
+</ul>
+<h2 class="mume-header" id="io">IO</h2>
+
+<ol>
+<li>定义</li>
+</ol>
+<blockquote>
+<p>在内存中存在数据交换的操作认为是IO操作,比如和终端交互 ,和磁盘交互，和网络交互等</p>
+</blockquote>
+<ol start="2">
+<li>程序分类</li>
+</ol>
+<blockquote>
+<ul>
+<li>IO密集型程序：在程序执行中有大量IO操作，而cpu运算较少。消耗cpu较少，耗时长。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>计算密集型程序：程序运行中计算较多，IO操作相对较少。cpu消耗多，执行速度快，几乎没有阻塞。</li>
+</ul>
+</blockquote>
+<h2 class="mume-header" id="%E6%96%87%E4%BB%B6">文件</h2>
+
+<p>文件是保存在持久化存储设备(硬盘、U盘、光盘..)上的一段数据。从功能角度分为文本文件（打开后会自动解码为字符）、二进制文件(视频、音频等)。在Python里把文件视作一种类型的对象，类似之前学习过的其它类型。</p>
+<h3 class="mume-header" id="%E5%AD%97%E8%8A%82%E4%B8%B2bytes">字节串（bytes）</h3>
+
+<p>在python3中引入了字节串的概念，与str不同，字节串以字节序列值表达数据，更方便用来处理二进程数据。因此在python3中字节串是常见的二进制数据展现方式。</p>
+<ul>
+<li>普通的ascii编码字符串可以在前面加b转换为字节串，例如：b'hello'</li>
+<li>字符串转换为字节串方法 ：encode()</li>
+<li>字节串转换为字符串方法 : decode()</li>
+</ul>
+<h3 class="mume-header" id="%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99">文件读写</h3>
+
+<p>对文件实现读写的基本操作步骤为：打开文件，读写文件，关闭文件</p>
+<p><em><strong>代码实现：  day1/file_open.py</strong></em><br>
+<em><strong>代码实现：  day1/file_read.py</strong></em><br>
+<em><strong>代码实现：  day1/file_write.py</strong></em></p>
+<ol>
+<li>打开文件</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">file_object <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>file_name<span class="token punctuation">,</span> access_mode<span class="token operator">=</span><span class="token string">'r'</span><span class="token punctuation">,</span> buffering<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+功能：打开一个文件，返回一个文件对象。
+参数：file_name————文件名；
+     access_mode————打开文件的方式<span class="token punctuation">,</span>如果不写默认为‘r’ 
+          文件模式                        操作
+              r                    以读方式打开 文件必须存在
+              w                    以写方式打开
+                                   文件不存在则创建，存在清空原有内容 
+              a                    以追加模式打开 
+              r<span class="token operator">+</span>                   以读写模式打开 文件必须存在
+              w<span class="token operator">+</span>                   以读写模式打开文件
+                                   不存在则创建，存在清空原有内容
+              a<span class="token operator">+</span>                   以读写模式打开 追加模式
+              rb                   以二进制读模式打开 同r
+              wb                   以二进制写模式打开 同w
+              ab                   以二进制追加模式打开 同a
+              rb<span class="token operator">+</span>                  以二进制读写模式打开 同r<span class="token operator">+</span>
+              wb<span class="token operator">+</span>                  以二进制读写模式打开 同w<span class="token operator">+</span>
+              ab<span class="token operator">+</span>                  以二进制读写模式打开 同a<span class="token operator">+</span>
+     buffering————参数<span class="token number">0</span>表示无缓冲，<span class="token number">1</span>表示有行缓冲，如果是大于<span class="token number">1</span>标识直接指明缓冲区大小。如果不写或为负数则表示使用系统默认提供的缓冲机制。
+返回值：成功返回文件流对象。失败得到IOError。
+</pre><blockquote>
+<p>缓冲:系统自动的在内存中为每一个正在使用的文件开辟一个缓冲区，从内存向磁盘输出数据必须先送到内存缓冲区，装满缓冲区在一起送到磁盘中去。从磁盘中读数据，则一次从磁盘文件将一批数据读入到内存缓冲区中，然后再从缓冲区逐个的将数据送到程序的数据区。</p>
+</blockquote>
+<hr>
+<h4 class="mume-header" id="%E6%89%A9%E5%B1%95%E5%BB%B6%E4%BC%B8%E6%96%87%E4%BB%B6%E6%B5%81">@ 扩展延伸：文件流</h4>
+
+<p><em><strong>代码实现：  day1/stdin.py</strong></em></p>
+<p>流（stream）：所有的I/O操作仅是简单的从程序移进或者移出，这种字节流，就称为流。所以打开一个文件有时也称为打开一个文件流对象</p>
+<p>系统已经默认为我们打开了三个流，在sys模块中：</p>
+<pre class="language-text">标准输入————sys.stdin
+标准输出————sys.stdout
+标准错我————sys.stderr
+</pre>
+<hr>
+<ol>
+<li>读取文件</li>
+</ol>
+<blockquote>
+<p>read([size])<br>
+用来直接读取字节到字符串中，最多读取给定数目个字节。如果没有给定size参数（默认值为-1）或者size值为负，文件将被读取直至末尾。文件过大时候建议在non-blocking模式下使用。</p>
+</blockquote>
+<blockquote>
+<p>readline([size])<br>
+读取打开文件的一行(读取下个行结束符之前的所有字节)。然后整行，包括行结束符，作为字符串返回。和 read() 相同，它也有一个可选的 size 参数，默认为 -1，代表读至行结束符。如果提供了该参数，那么在超过size个字节后会返回不完整的行。</p>
+</blockquote>
+<blockquote>
+<p>readlines([sizeint])<br>
+该方法并不像其它两个输入方法一样返回一个字符串。它会读取所有(剩余的)行然后把它们作为一个字符串列表返回。它的可选参数sizhint代表返回的最大字节大小。</p>
+</blockquote>
+<blockquote>
+<p>文件对象本身也是一个迭代器，在for循环中可以迭代文件的每一行。</p>
+</blockquote>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">for</span> line <span class="token keyword">in</span> f<span class="token punctuation">:</span>
+     <span class="token keyword">print</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+</pre><ol start="3">
+<li>写入文件</li>
+</ol>
+<blockquote>
+<p>write(string)<br>
+功能与 read() 和 readline() 相反。它把含有文本数据或二进制数据块的字符串写入到文件中去。</p>
+</blockquote>
+<blockquote>
+<p>writelines(str_list)<br>
+和 readlines() 一样，writelines()方法是针对列表的操作，它接受一个字符串列表作为参数，将它们写入文件。行结束符并不会被自动加入，所以如果需要的话，你必须在调用writelines()前给每行结尾加上行结束符。</p>
+</blockquote>
+<ol start="4">
+<li>关闭文件</li>
+</ol>
+<p>打开一个文件后我们就可以通过文件对象对文件进行操作了，当操作结束后使用close（）关闭这个对象可以防止一些误操作，也可以节省资源。</p>
+<blockquote>
+<p>file_object.close()</p>
+</blockquote>
+<ol start="5">
+<li>with操作</li>
+</ol>
+<p>python中的with语句使用于对资源进行访问的场合，保证不管处理过程中是否发生错误或者异常都会执行规定的“清理”操作，释放被访问的资源，比如有文件读写后自动关闭、线程中锁的自动获取和释放等。</p>
+<p>with语句的语法格式如下：</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> context_expression <span class="token punctuation">[</span><span class="token keyword">as</span> target<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+    <span class="token keyword">with</span><span class="token operator">-</span>body
+</pre><p>通过with方法可以不用close(),因为with生成的对象在语句块结束后会自动处理，所以也就不需要close了，但是这个文件对象只能在with语句块内使用。</p>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'file'</span><span class="token punctuation">,</span><span class="token string">'r+'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C">其他操作</h3>
+
+<h4 class="mume-header" id="%E5%88%B7%E6%96%B0%E7%BC%93%E5%86%B2%E5%8C%BA">刷新缓冲区</h4>
+
+<p><em><strong>代码实现：  day1/flush.py</strong></em></p>
+<blockquote>
+<p>flush()<br>
+该函数调用后会进行一次磁盘交互，将缓冲区中的内容写入到磁盘。</p>
+</blockquote>
+<h4 class="mume-header" id="%E6%96%87%E4%BB%B6%E5%81%8F%E7%A7%BB%E9%87%8F">文件偏移量</h4>
+
+<p><em><strong>代码实现：  day1/seek.py</strong></em></p>
+<ol>
+<li>定义</li>
+</ol>
+<blockquote>
+<p>打开一个文件进行操作时系统会自动生成一个记录，记录中描述了我们对文件的一系列操作。其中包括每次操作到的文件位置。文件的读写操作都是从这个位置开始进行的。</p>
+</blockquote>
+<ol start="2">
+<li>基本操作</li>
+</ol>
+<blockquote>
+<p>tell()<br>
+功能：获取文件偏移量</p>
+</blockquote>
+<blockquote>
+<p>seek(offset[,whence])<br>
+功能:移动文件为止<br>
+参数：offset字节代表相对于某个位置偏移量。可以是负数表示向前移动。<br>
+whence是基准位置的默认值为 0，代表从文件开头算起，1代表从当前位置算起，2 代表从文件末尾算起。</p>
+</blockquote>
+<h4 class="mume-header" id="%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6">文件描述符</h4>
+
+<ol>
+<li>定义</li>
+</ol>
+<blockquote>
+<p>系统中每一个IO操作都会分配一个整数作为编号，该整数即这个IO操作的文件描述符。</p>
+</blockquote>
+<ol start="2">
+<li>获取文件描述符</li>
+</ol>
+<blockquote>
+<p>fileno()<br>
+通过IO对象获取对应的文件描述符</p>
+</blockquote>
+<h3 class="mume-header" id="%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%87%BD%E6%95%B0">文件管理函数</h3>
+
+<ol>
+<li>获取文件大小</li>
+</ol>
+<blockquote>
+<p>os.path.getsize(file)</p>
+</blockquote>
+<ol start="2">
+<li>查看文件列表</li>
+</ol>
+<blockquote>
+<p>os.listdir(dir)</p>
+</blockquote>
+<ol start="4">
+<li>查看文件是否存在</li>
+</ol>
+<blockquote>
+<p>os.path.exists(file)</p>
+</blockquote>
+<ol start="5">
+<li>判断文件类型</li>
+</ol>
+<blockquote>
+<p>os.path.isfile(file)</p>
+</blockquote>
+<ol start="6">
+<li>删除文件</li>
+</ol>
+<blockquote>
+<p>os.remove(file)</p>
+</blockquote>
+<h2 class="mume-header" id="%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80">网络编程基础</h2>
+
+<p>计算机网络功能主要包括实现资源共享，实现数据信息的快速传递。</p>
+<h3 class="mume-header" id="osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B">OSI七层模型</h3>
+
+<blockquote>
+<p>制定组织： ISO（国际标准化组织）</p>
+</blockquote>
+<blockquote>
+<p>作用：使网络通信工作流程标准化</p>
+</blockquote>
+<blockquote>
+<p>应用层 ： 提供用户服务，具体功能有应用程序实现<br>
+表示层 ： 数据的压缩优化加密<br>
+会话层 ： 建立用户级的连接，选择适当的传输服务<br>
+传输层 ： 提供传输服务<br>
+网络层 ： 路由选择，网络互联<br>
+链路层 ： 进行数据交换，控制具体数据的发送<br>
+物理层 ： 提供数据传输的硬件保证，网卡接口，传输介质</p>
+</blockquote>
+<blockquote>
+<p>优点</p>
+<ol>
+<li>建立了统一的工作流程</li>
+<li>分部清晰，各司其职，每个步骤分工明确</li>
+<li>降低了各个模块之间的耦合度，便于开发</li>
+</ol>
+</blockquote>
+<h3 class="mume-header" id="%E5%9B%9B%E5%B1%82%E6%A8%A1%E5%9E%8Btcpip%E6%A8%A1%E5%9E%8B">四层模型（TCP/IP模型）</h3>
+
+<p>背景 ： 实际工作中工程师无法完全按照七层模型要求操作，逐渐演化为更符合实际情况的四层</p>
+<p><img src="./pythonNet_files/1_tcpip模型.png" alt="TCP/IP模型"></p>
+<h4 class="mume-header" id="%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E8%BF%87%E7%A8%8B">数据传输过程</h4>
+
+<ol>
+<li>发送端由应用程序发送消息，逐层添加首部信息，最终在物理层发送消息包。</li>
+<li>发送的消息经过多个节点（交换机，路由器）传输，最终到达目标主机。</li>
+<li>目标主机由物理层逐层解析首部消息包，最终到应用程序呈现消息。</li>
+</ol>
+<p><img src="./pythonNet_files/1_TCP.png" alt="TCP/IP模型"></p>
+<h4 class="mume-header" id="%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE">网络协议</h4>
+
+<blockquote>
+<p>在网络数据传输中，都遵循的规定，包括建立什么样的数据结构，什么样的特殊标志等。</p>
+</blockquote>
+<h3 class="mume-header" id="%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5">网络基础概念</h3>
+
+<ul>
+<li>网络主机（host）</li>
+</ul>
+<blockquote>
+<p>功能：标识一台主机在网络中的位置（地址）</p>
+</blockquote>
+<blockquote>
+<p>本地地址 ： 'localhost' , '127.0.0.1'<br>
+网络地址 ： '172.40.91.185'<br>
+自动获取地址： '0.0.0.0'</p>
+</blockquote>
+<blockquote>
+<p>查看本机网络地址命令： ifconfig</p>
+</blockquote>
+<ul>
+<li>IP地址</li>
+</ul>
+<blockquote>
+<p>功能：确定一台主机的网络路由位置</p>
+</blockquote>
+<blockquote>
+<p>结构</p>
+<blockquote>
+<p>IPv4  点分十进制表示 172.40.91.185 每部分取值范围0--255<br>
+IPv6  128位 扩大了地址范围</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>特殊IP</p>
+<blockquote>
+<p>127.0.0.1   本机测试IP<br>
+0.0.0.0     自动获取本机网卡地址<br>
+172.40.91.0  通常表示一个网段<br>
+172.40.91.1  通常表示一个网关<br>
+172.40.91.255  用作广播地址</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>域名</li>
+</ul>
+<blockquote>
+<p>定义： 给网络服务器地址起的名字</p>
+</blockquote>
+<blockquote>
+<p>作用： 方便记忆，表达一定的含义</p>
+</blockquote>
+<blockquote>
+<p>ping [ip] : 测试和某个主机是否联通</p>
+</blockquote>
+<ul>
+<li>端口号（port）</li>
+</ul>
+<blockquote>
+<p>作用：端口是网络地址的一部分，用于区分主机上不同的网络应用程序。</p>
+</blockquote>
+<blockquote>
+<p>特点：一个系统中的应用监听端口不能重复</p>
+</blockquote>
+<blockquote>
+<p>取值范围： 1 -- 65535</p>
+<blockquote>
+<p>1--1023  系统应用或者大众程序监听端口<br>
+1024--65535 自用端口</p>
+</blockquote>
+</blockquote>
+<h2 class="mume-header" id="%E4%BC%A0%E8%BE%93%E5%B1%82%E6%9C%8D%E5%8A%A1">传输层服务</h2>
+
+<h3 class="mume-header" id="%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%BC%A0%E8%BE%93%E6%9C%8D%E5%8A%A1%E5%9F%BA%E4%BA%8Etcp%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93">面向连接的传输服务（基于TCP协议的数据传输）</h3>
+
+<ol>
+<li>
+<p>传输特征 ： 提供了可靠的数据传输，可靠性指数据传输过程中无丢失，无失序，无差错，无重复。</p>
+</li>
+<li>
+<p>实现手段 ： 在通信前需要建立数据连接，通信结束要正常断开连接。</p>
+</li>
+</ol>
+<blockquote>
+<p>三次握手（建立连接）</p>
+<blockquote>
+<p>客户端向服务器发送消息报文请求连接<br>
+服务器收到请求后，回复报文确定可以连接<br>
+客户端收到回复，发送最终报文连接建立</p>
+</blockquote>
+</blockquote>
+<p><img src="./pythonNet_files/1_三次握手.png" alt=""></p>
+<blockquote>
+<p>四次挥手（断开连接）</p>
+<blockquote>
+<p>主动方发送报文请求断开连接<br>
+被动方收到请求后，立即回复，表示准备断开<br>
+被动方准备就绪，再次发送报文表示可以断开<br>
+主动方收到确定，发送最终报文完成断开</p>
+</blockquote>
+</blockquote>
+<p><img src="./pythonNet_files/1_四次挥手.png" alt=""></p>
+<ol start="3">
+<li>适用情况 ： 对数据传输准确性有明确要求，传数文件较大，需要确保可靠性的情况。比如：网页获取，文件下载，邮件收发。</li>
+</ol>
+<h3 class="mume-header" id="%E9%9D%A2%E5%90%91%E6%97%A0%E8%BF%9E%E6%8E%A5%E7%9A%84%E4%BC%A0%E8%BE%93%E6%9C%8D%E5%8A%A1%E5%9F%BA%E4%BA%8Eudp%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93">面向无连接的传输服务（基于UDP协议的数据传输）</h3>
+
+<ol>
+<li>
+<p>传输特点 ： 不保证传输的可靠性，传输过程没有连接和断开，数据收发自由随意。</p>
+</li>
+<li>
+<p>适用情况 ： 网络较差，对传输可靠性要求不高。比如：网络视频，群聊，广播</p>
+</li>
+</ol>
+<p><em><strong>面试要求</strong></em></p>
+<ul>
+<li>OSI七层模型介绍一下，tcp/ip模型是什么？</li>
+<li>tcp服务和udp服务有什么区别？</li>
+<li>三次握手和四次挥手指什么，过程是怎样的？</li>
+</ul>
+<h2 class="mume-header" id="socket%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B">socket套接字编程</h2>
+
+<h3 class="mume-header" id="%E5%A5%97%E6%8E%A5%E5%AD%97%E4%BB%8B%E7%BB%8D">套接字介绍</h3>
+
+<ol>
+<li>
+<p>套接字 ： 实现网络编程进行数据传输的一种技术手段</p>
+</li>
+<li>
+<p>Python实现套接字编程：import  socket</p>
+</li>
+<li>
+<p>套接字分类</p>
+</li>
+</ol>
+<blockquote>
+<p>流式套接字(SOCK_STREAM): 以字节流方式传输数据，实现tcp网络传输方案。(面向连接--tcp协议--可靠的--流式套接字)</p>
+</blockquote>
+<blockquote>
+<p>数据报套接字(SOCK_DGRAM):以数据报形式传输数据，实现udp网络传输方案。(无连接--udp协议--不可靠--数据报套接字)</p>
+</blockquote>
+<h3 class="mume-header" id="tcp%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B">tcp套接字编程</h3>
+
+<h4 class="mume-header" id="%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B5%81%E7%A8%8B">服务端流程</h4>
+
+<p><img src="./pythonNet_files/1_TCP_Server.png" alt=""><br>
+<em><strong>代码实现：day2/tcp_server.py</strong></em></p>
+<ol>
+<li>创建套接字</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd<span class="token operator">=</span>socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket_family<span class="token operator">=</span>AF_INET<span class="token punctuation">,</span>socket_type<span class="token operator">=</span>SOCK_STREAM<span class="token punctuation">,</span>proto<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+功能：创建套接字
+参数：  socket_family  网络地址类型 AF_INET表示ipv4
+	socket_type  套接字类型 SOCK_STREAM 流式SOCK_DGRAM 数据报
+	proto  通常为<span class="token number">0</span>  选择子协议
+返回值： 套接字对象
+</pre><ol start="2">
+<li>绑定地址</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd<span class="token punctuation">.</span>bind<span class="token punctuation">(</span>addr<span class="token punctuation">)</span>
+功能： 绑定本机网络地址
+参数： 二元元组 <span class="token punctuation">(</span>ip<span class="token punctuation">,</span>port<span class="token punctuation">)</span>  <span class="token punctuation">(</span><span class="token string">'0.0.0.0'</span><span class="token punctuation">,</span><span class="token number">8888</span><span class="token punctuation">)</span>
+</pre><ol start="3">
+<li>设置监听</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd<span class="token punctuation">.</span>listen<span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+功能 ： 将套接字设置为监听套接字，确定监听队列大小
+参数 ： 监听队列大小
+</pre><ol start="4">
+<li>等待处理客户端连接请求</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">connfd<span class="token punctuation">,</span>addr <span class="token operator">=</span> sockfd<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+功能： 阻塞等待处理客户端请求
+返回值： connfd  客户端连接套接字
+         addr  连接的客户端地址
+</pre><ol start="5">
+<li>消息收发</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">data <span class="token operator">=</span> connfd<span class="token punctuation">.</span>recv<span class="token punctuation">(</span>buffersize<span class="token punctuation">)</span>
+功能 <span class="token punctuation">:</span> 接受客户端消息
+参数 ：每次最多接收消息的大小
+返回值： 接收到的内容
+
+n <span class="token operator">=</span> connfd<span class="token punctuation">.</span>send<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+功能 <span class="token punctuation">:</span> 发送消息
+参数 ：要发送的内容  <span class="token builtin">bytes</span>格式
+返回值： 发送的字节数
+</pre><ol start="6">
+<li>关闭套接字</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+功能：关闭套接字
+</pre><h4 class="mume-header" id="%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E7%A8%8B">客户端流程</h4>
+
+<p><em><strong>代码实现：day2/tcp_client.py</strong></em></p>
+<p><img src="./pythonNet_files/1_TCP_Client.png" alt=""></p>
+<ol>
+<li>创建套接字</li>
+</ol>
+<blockquote>
+<p>注意:只有相同类型的套接字才能进行通信</p>
+</blockquote>
+<ol start="2">
+<li>请求连接</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>server_addr<span class="token punctuation">)</span>
+功能：连接服务器
+参数：元组  服务器地址
+</pre><ol start="3">
+<li>收发消息</li>
+</ol>
+<blockquote>
+<p>注意： 防止两端都阻塞，recv send要配合</p>
+</blockquote>
+<ol start="4">
+<li>关闭套接字</li>
+</ol>
+<h4 class="mume-header" id="tcp-%E5%A5%97%E6%8E%A5%E5%AD%97%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E7%89%B9%E7%82%B9">tcp 套接字数据传输特点</h4>
+
+<blockquote>
+<ul>
+<li>tcp连接中当一端退出，另一端如果阻塞在recv，此时recv会立即返回一个空字串。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>tcp连接中如果一端已经不存在，让然试图通过send发送则会产生BrokenPipeError</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>一个监听套接字可以同时连接多个客户端，也能够重复被连接</li>
+</ul>
+</blockquote>
+<h4 class="mume-header" id="%E7%BD%91%E7%BB%9C%E6%94%B6%E5%8F%91%E7%BC%93%E5%86%B2%E5%8C%BA">网络收发缓冲区</h4>
+
+<ol>
+<li>网络缓冲区有效的协调了消息的收发速度</li>
+<li>send和recv实际是向缓冲区发送接收消息，当缓冲区不为空recv就不会阻塞。</li>
+</ol>
+<h4 class="mume-header" id="tcp%E7%B2%98%E5%8C%85">tcp粘包</h4>
+
+<blockquote>
+<p>原因：tcp以字节流方式传输，没有消息边界。多次发送的消息被一次接收，此时就会形成粘包。</p>
+</blockquote>
+<blockquote>
+<p>影响：如果每次发送内容是一个独立的含义，需要接收端独立解析此时粘包会有影响。</p>
+</blockquote>
+<blockquote>
+<p>处理方法</p>
+<blockquote>
+<ol>
+<li>人为的添加消息边界</li>
+<li>控制发送速度</li>
+</ol>
+</blockquote>
+</blockquote>
+<h3 class="mume-header" id="udp%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B">UDP套接字编程</h3>
+
+<h4 class="mume-header" id="%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B5%81%E7%A8%8B-1">服务端流程</h4>
+
+<p><img src="./pythonNet_files/2_UDP_Server.png" alt=""><br>
+<em><strong>代码实现：day2/udp_server.py</strong></em></p>
+<ol>
+<li>创建数据报套接字</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd <span class="token operator">=</span> socket<span class="token punctuation">(</span>AF_INET<span class="token punctuation">,</span>SOCK_DGRAM<span class="token punctuation">)</span>
+</pre><ol start="2">
+<li>绑定地址</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd<span class="token punctuation">.</span>bind<span class="token punctuation">(</span>addr<span class="token punctuation">)</span>
+</pre><ol start="3">
+<li>消息收发</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">data<span class="token punctuation">,</span>addr <span class="token operator">=</span> sockfd<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span>buffersize<span class="token punctuation">)</span>
+功能： 接收UDP消息
+参数： 每次最多接收多少字节
+返回值： data  接收到的内容
+	addr  消息发送方地址
+
+n <span class="token operator">=</span> sockfd<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>data<span class="token punctuation">,</span>addr<span class="token punctuation">)</span>
+功能： 发送UDP消息
+参数： data  发送的内容 <span class="token builtin">bytes</span>格式
+	addr  目标地址
+返回值：发送的字节数
+</pre><ol start="4">
+<li>关闭套接字</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">sockfd<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><h4 class="mume-header" id="%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E7%A8%8B-1">客户端流程</h4>
+
+<p><img src="./pythonNet_files/2_UDP_Client.png" alt=""><br>
+<em><strong>代码实现：day2/udp_server.py</strong></em></p>
+<ol>
+<li>创建套接字</li>
+<li>收发消息</li>
+<li>关闭套接字</li>
+</ol>
+<hr>
+<blockquote>
+<p>总结 ：tcp套接字和udp套接字编程区别</p>
+<blockquote>
+<ol>
+<li>流式套接字是以字节流方式传输数据，数据报套接字以数据报形式传输</li>
+<li>tcp套接字会有粘包，udp套接字有消息边界不会粘包</li>
+<li>tcp套接字保证消息的完整性，udp套接字则不能</li>
+<li>tcp套接字依赖listen accept建立连接才能收发消息，udp套接字则不需要</li>
+<li>tcp套接字使用send，recv收发消息，udp套接字使用sendto，recvfrom</li>
+</ol>
+</blockquote>
+</blockquote>
+<hr>
+<h3 class="mume-header" id="socket%E6%A8%A1%E5%9D%97%E6%96%B9%E6%B3%95%E5%92%8Csocket%E5%A5%97%E6%8E%A5%E5%AD%97%E5%B1%9E%E6%80%A7">socket模块方法和socket套接字属性</h3>
+
+<ol>
+<li>
+<p>部分socket模块方法</p>
+<pre class="language-text"> 【1】 gethostname()  获取计算机名
+ 【2】 gethostbyname('www.baidu.com')  获取主机ip地址
+ 【3】 getservbyname('mysql') 获取服务端口号
+ 【4】 getservbyport(3306)  获取端口对应服务
+ 【5】 inet_aton('192.168.1.2') 将IP转换为bytes子串
+ 【6】 inet_ntoa(b'\xc0\xa8\x01\x02') 将bytes子串转换为IP地址
+</pre>
+</li>
+<li>
+<p>套接字属性<br>
+<em><strong>代码实现：day2/sock_attr.py</strong></em></p>
+<pre class="language-text"> 【1】 sockfd.type  套接字类型
+
+ 【2】 sockfd.family 套接字地址类型
+
+ 【3】 sockfd.getsockname() 获取套接字绑定地址
+
+ 【4】 sockfd.fileno() 获取套接字的文件描述符
+ 
+ 【5】 sockfd.getpeername() 获取连接套接字客户端地址
+ 
+ 【6】 sockfd.setsockopt(level,option,value)
+       功能：设置套接字选项
+ 			参数： level  选项类别   SOL_SOCKET
+ 			       option 具体选项内容
+ 						 value  选项值
+ 
+ 【7】 sockfd.getsockopt(level,option) 
+       功能 ： 获取套接字选项值
+</pre>
+</li>
+</ol>
+<p><img src="./pythonNet_files/2_setsockopt.png" alt=""></p>
+<h3 class="mume-header" id="udp%E5%A5%97%E6%8E%A5%E5%AD%97%E5%B9%BF%E6%92%AD">UDP套接字广播</h3>
+
+<p><em><strong>代码实现：day2/broadcast_recv.py</strong></em><br>
+<em><strong>代码实现：day2/broadcast_recv.py</strong></em></p>
+<ul>
+<li>
+<p>广播定义 ： 一端发送多点接收</p>
+</li>
+<li>
+<p>广播地址 ： 每个网络的最大地址为发送广播的地址，向该地址发送，则网段内所有主机都能接收。</p>
+</li>
+</ul>
+<h3 class="mume-header" id="tcp%E5%A5%97%E6%8E%A5%E5%AD%97%E4%B9%8Bhttp%E4%BC%A0%E8%BE%93">TCP套接字之HTTP传输</h3>
+
+<h4 class="mume-header" id="http%E5%8D%8F%E8%AE%AE-%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE">HTTP协议 （超文本传输协议）</h4>
+
+<ol>
+<li>
+<p>用途 ： 网页获取，数据的传输</p>
+</li>
+<li>
+<p>特点</p>
+</li>
+</ol>
+<blockquote>
+<ul>
+<li>应用层协议，传输层使用tcp传输</li>
+<li>简单，灵活，很多语言都有HTTP专门接口</li>
+<li>无状态，协议不记录传输内容</li>
+<li>http1.1 支持持久连接，丰富了请求类型</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>网页请求过程</li>
+</ol>
+<blockquote>
+<p>1.客户端（浏览器）通过tcp传输，发送http请求给服务端<br>
+2.服务端接收到http请求后进行解析<br>
+3.服务端处理请求内容，组织响应内容<br>
+4.服务端将响应内容以http响应格式发送给浏览器<br>
+5.浏览器接收到响应内容，解析展示</p>
+</blockquote>
+<p><img src="./pythonNet_files/2_网站访问.png" alt=""></p>
+<h4 class="mume-header" id="http%E8%AF%B7%E6%B1%82">HTTP请求</h4>
+
+<p><em><strong>代码实现：day3/http_test.py</strong></em><br>
+<em><strong>代码实现：day3/http_server.py</strong></em></p>
+<ul>
+<li>请求行 ： 具体的请求类别和请求内容</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-"><code>	GET         /        HTTP/1.1
+	请求类别   请求内容     协议版本
+</code></pre><p>请求类别：每个请求类别表示要做不同的事情</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>		GET : 获取网络资源
+		POST ：提交一定的信息，得到反馈
+		HEAD ： 只获取网络资源的响应头
+		PUT ： 更新服务器资源
+		DELETE ： 删除服务器资源
+		CONNECT
+		TRACE ： 测试
+		OPTIONS ： 获取服务器性能信息
+</code></pre><ul>
+<li>请求头：对请求的进一步解释和描述</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-"><code>Accept-Encoding: gzip
+</code></pre><ul>
+<li>空行</li>
+<li>请求体: 请求参数或者提交内容</li>
+</ul>
+<h4 class="mume-header" id="http%E5%93%8D%E5%BA%94response">http响应（response）</h4>
+
+<ol>
+<li>响应格式：响应行，响应头，空行，响应体</li>
+</ol>
+<ul>
+<li>响应行 ： 反馈基本的响应情况</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-"><code>HTTP/1.1     200       OK
+版本信息    响应码   附加信息
+</code></pre><p>响应码 ：</p>
+<pre data-role="codeBlock" data-info="" class="language-"><code>1xx  提示信息，表示请求被接收
+2xx  响应成功
+3xx  响应需要进一步操作，重定向
+4xx  客户端错误
+5xx  服务器错误
+</code></pre><ul>
+<li>响应头：对响应内容的描述</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-"><code>Content-Type: text/html
+</code></pre><ul>
+<li>响应体：响应的主体内容信息</li>
+</ul>
+<h2 class="mume-header" id="struct%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BD%BF%E7%94%A8">struct模块的使用</h2>
+
+<p><em><strong>代码实现：day3/struct_recv.py</strong></em><br>
+<em><strong>代码实现：day3/struct_send.py</strong></em></p>
+<ol>
+<li>
+<p>原理： 将一组简单数据进行打包，转换为bytes格式发送。或者将一组bytes格式数据，进行解析。</p>
+</li>
+<li>
+<p>接口使用</p>
+</li>
+</ol>
+<pre data-role="codeBlock" data-info="python" class="language-python">Struct<span class="token punctuation">(</span>fmt<span class="token punctuation">)</span>
+功能<span class="token punctuation">:</span> 生成结构化对象
+参数：fmt  定制的数据结构
+
+st<span class="token punctuation">.</span>pack<span class="token punctuation">(</span>v1<span class="token punctuation">,</span>v2<span class="token punctuation">,</span>v3<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+功能<span class="token punctuation">:</span> 将一组数据按照指定格式打包转换为<span class="token builtin">bytes</span>
+参数：要打包的数据
+返回值： <span class="token builtin">bytes</span>字节串
+
+st<span class="token punctuation">.</span>unpack<span class="token punctuation">(</span>bytes_data<span class="token punctuation">)</span>
+功能： 将<span class="token builtin">bytes</span>字节串按照指定的格式解析
+参数： 要解析的字节串
+返回值： 解析后的内容
+
+struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span>fmt<span class="token punctuation">,</span>v1<span class="token punctuation">,</span>v2<span class="token punctuation">,</span>v3<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+struct<span class="token punctuation">.</span>unpack<span class="token punctuation">(</span>fmt<span class="token punctuation">,</span>bytes_data<span class="token punctuation">)</span>
+</pre><blockquote>
+<p>说明： 可以使用struct模块直接调用pack unpack。此时这两函数第一个参数传入fmt。其他用法功能相同</p>
+</blockquote>
+<p><img src="./pythonNet_files/4_struct.png" alt=""></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

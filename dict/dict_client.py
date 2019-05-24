@@ -11,6 +11,34 @@ ADDR = ('127.0.0.1', 8000)
 s = socket()
 s.connect(ADDR)
 
+
+def do_history(name):
+    msg = "H %s" % name
+    s.send(msg.encode())
+    data = s.recv(128).decode()
+    if data == 'OK':
+        while True:
+            # 等待回复
+            data = s.recv(2048).decode()
+            if data=="##":
+                break
+            print(data)
+    else:
+        print("还没有历史记录")
+
+
+def do_query(name):
+    while True:
+        word = input("单词:")
+        if word == '##':  # 结束单词查询
+            break
+        msg = "Q %s %s" % (name, word)
+        s.send(msg.encode())
+        # 等待回复
+        data = s.recv(2048).decode()
+        print(data)
+
+
 # 二级界面
 def login(name):
     while True:
@@ -21,9 +49,9 @@ def login(name):
         """)
         cmd = input("输入选项:")
         if cmd == "1":
-            pass
+            do_query(name)
         elif cmd == "2":
-            pass
+            do_history(name)
         elif cmd == "3":
             return
         else:
@@ -55,20 +83,20 @@ def do_register():
             print("注册失败")
         return
 
+
 # 登录
 def do_login():
     name = input("User:")
     passwd = getpass()
-    msg = "L %s %s"%(name,passwd)
+    msg = "L %s %s" % (name, passwd)
     s.send(msg.encode())
-    #等待反馈
+    # 等待反馈
     data = s.recv(128).decode()
     if data == "OK":
         print("登录成功")
         login(name)
     else:
         print("登录失败")
-
 
 
 # 创建网络连接
@@ -85,6 +113,8 @@ def main():
         elif cmd == "2":
             do_login()
         elif cmd == "3":
+            s.send(b'E')
+            print("谢谢使用")
             return
         else:
             print("请输入正确的命令!")

@@ -3,10 +3,11 @@
 """
 import pymysql
 import hashlib
+import time
 
 
 class Database:
-    def __init__(self,host='localhost',
+    def __init__(self, host='localhost',
                  port=3306,
                  user='root',
                  passwd='123456',
@@ -58,12 +59,37 @@ class Database:
             self.db.rollback()
             return False
 
+    # 处理登录
     def login(self, name, passwd):
         hash = hashlib.md5((name + "!@#$%!^!^)*(_(+").encode())
         hash.update(passwd.encode())
-        sql = "select * from dict_user where name='%s' and passwd='%s'" % (name,hash.hexdigest())
-        self.cur.execute(sql)
-        r = self.cur.fetchone()  # 如果查询到结果
-        if r:
+        sql = "select * from dict_user where name='%s' and passwd='%s'" % (name, hash.hexdigest())
+
+        # 如果查询到结果
+        if self.cur.execute(sql):
             return True
 
+    # 插入历史记录
+    def insert_history(self, name, word):
+        tm = time.ctime()
+        sql = "insert into dict_history (name,word,time) values (%s,%s,%s)"
+        try:
+            self.cur.execute(sql, [name, word, tm])
+            self.db.commit()
+        except Exception:
+            self.db.rollback()
+
+    # 查单词
+    def query(self, word):
+        sql = "select mean from words where word='%s'" % word
+        self.cur.execute(sql)
+        r = self.cur.fetchone()
+
+        if r:
+            return r[0]
+
+    # 查历史
+    def history(self, name):
+        sql = "select name,word,time from dict_history where name='%s' order by id desc limit 10" % name
+        self.cur.execute(sql)
+        return self.cur.fetchall()
